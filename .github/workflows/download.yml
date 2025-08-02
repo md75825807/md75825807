@@ -10,7 +10,7 @@ concurrency:
 
 env:
   TZ: Asia/Shanghai
-  TASK_COUNT: 1000
+  TASK_COUNT: 900
 
 jobs:
   prepare-matrix:
@@ -46,8 +46,8 @@ jobs:
           QUEUE_TIME=$(( $(date -u +%s) - $(date -d "$RUN_STARTED_AT" +%s) ))
           echo "Queue time: $QUEUE_TIME seconds"
 
-          if [ "$QUEUE_TIME" -gt 30 ]; then
-            echo "::error::Queue time exceeded 30 seconds."
+          if [ "$QUEUE_TIME" -gt 60 ]; then
+            echo "::error::Queue time exceeded 60 seconds."
             exit 1
           fi
 
